@@ -1,5 +1,3 @@
-import math
-
 class Tensor:
     def __init__(self, data, _children=(), _op=''):
         self.data = data

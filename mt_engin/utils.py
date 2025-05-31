@@ -1,5 +1,5 @@
 import random
-from mini_tensor import Tensor
+from mt_engin.mini_tensor import Tensor
 
 class MiniOptimizer:
     def __init__(self, layers, lr=0.01):
