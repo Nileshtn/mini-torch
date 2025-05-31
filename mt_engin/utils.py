@@ -1,19 +1,19 @@
 import random
 from mt_engin.mini_tensor import Tensor
+from mt_engin.mini_nn import Module
+
 
 class MiniOptimizer:
-    def __init__(self, layers, lr=0.01):
-        self.layers = layers
+    def __init__(self, model:Module, lr=0.0001):
+        self.model = model
         self.lr = lr
 
     def zero_grad(self):
-        for layer in self.layers:
-            layer.zero_grad()
+        self.model.zero_grad()
 
     def step(self):
-        for layer in self.layers:
-            for p in layer.parameters():
-                p.data += -self.lr * p.grad
+        for p in self.model.parameters():
+            p.data += -self.lr * p.grad
 
 def mse_loss(pred, target):
     return (pred - target) ** 2
