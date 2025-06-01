@@ -13,7 +13,7 @@ class MiniOptimizer:
         # Set all gradients in the model to zero
         self.model.zero_grad()
 
-    def step(self):
+    def step(self, loss:Tensor):
         # Update each parameter in the model using gradient descent
         for p in self.model.parameters():
             p.data += -self.lr * p.grad  # Gradient descent update rule

@@ -12,6 +12,11 @@ class Tensor:
         self._prev = set(_children)  # Set of parent tensors
         self._op = _op  # Operation that produced this tensor
 
+    def item(self):
+        # Return the scalar value of the tensor
+        assert isinstance(self.data, (int, float)), "Tensor must be a scalar to call item()"
+        return self.data
+
     def __add__(self, other):
         # Overload the + operator for tensors
         other = other if isinstance(other, Tensor) else Tensor(other)
