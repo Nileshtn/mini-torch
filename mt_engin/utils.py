@@ -15,7 +15,7 @@ class MiniOptimizer:
         for p in self.model.parameters():
             p.data += -self.lr * p.grad
 
-def mse_loss(pred, target):
+def mse_loss(pred:Tensor, target:Tensor):
     return (pred - target) ** 2
 
 def target_generator():
@@ -26,3 +26,6 @@ def target_generator():
 
 def binary_round(val, threshold=0.5):
     return Tensor(1) if val.data >= threshold else Tensor(0)
+
+
+# def save(model):

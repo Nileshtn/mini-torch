@@ -34,9 +34,22 @@ class Linear:
     def zero_grad(self):
         for n in self.neurons:
             n.zero_grad()
-            
-            
-            
+
+class Relu:
+    def __call__(self, x:list[Tensor]):
+        out = []
+        for value in x:
+            out.append(value.relu())
+
+        return out
+
+class Sigmoid:
+    def __call__(self, x:list[Tensor]):
+        out = []
+        for value in x:
+            out.append(value.sigmoid())
+        return out
+
 class Module:
     def __init__(self, *args, **kwargs):
         pass

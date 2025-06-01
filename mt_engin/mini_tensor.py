@@ -1,3 +1,4 @@
+import math
 class Tensor:
     def __init__(self, data, _children=(), _op=''):
         self.data = data
@@ -36,6 +37,13 @@ class Tensor:
         out = Tensor(0 if self.data < 0 else self.data, (self,), 'ReLU')
         def _backward():
             self.grad += (out.data > 0) * out.grad
+        out._backward = _backward
+        return out
+    
+    def sigmoid(self):
+        out = Tensor(1 / (1 + math.exp(-self.data)), (self,), 'sigmoid')
+        def _backward():
+            self.grad += out.data * (1 - out.data) * out.grad
         out._backward = _backward
         return out
 
