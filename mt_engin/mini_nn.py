@@ -12,7 +12,7 @@ class Neuron:
         if len(data) != len(self.weight):
             raise ValueError("Input size mismatch")
         out = sum((w * x for w, x in zip(self.weight, data)), self.bias)
-        return out.relu()
+        return out
 
     def parameters(self):
         # Returns all parameters (weights and bias) as a list
@@ -44,9 +44,12 @@ class Linear:
             n.zero_grad()
 
 class Relu:
-    def __call__(self, x:list[Tensor]):
+    def __call__(self, x:list[Tensor] | Tensor):
         # Applies ReLU activation to each Tensor in the input list
         out = []
+        if isinstance(x, Tensor):
+            return x.relu()
+        
         for value in x:
             out.append(value.relu())
         return out

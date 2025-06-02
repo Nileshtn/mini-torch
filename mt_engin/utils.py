@@ -8,17 +8,17 @@ class MiniOptimizer:
         # Initialize the optimizer with a model and learning rate
         self.model = model  # The model whose parameters will be updated
         self.lr = lr  # Learning rate
-
+        
     def zero_grad(self):
         # Set all gradients in the model to zero
         self.model.zero_grad()
 
-    def step(self, loss:Tensor):
+    def step(self):
         # Update each parameter in the model using gradient descent
         for p in self.model.parameters():
             p.data += -self.lr * p.grad  # Gradient descent update rule
 
-def mse_loss(pred:Tensor, target:Tensor):
+def mse_loss(pred:Tensor, target:Tensor)-> Tensor:
     # Mean squared error loss for two scalar tensors
     return (pred - target) ** 2
 
